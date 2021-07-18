@@ -13,18 +13,19 @@ xkb_symbols "basic" {
   key <AE06> { [ 5 ] };
   key <AE07> { [ 6 ] };
   key <AE08> { [ 7 ] };
-  key <AE09> { [ 8, slash ] };
+  key <AE09> { [ 8, bar ] };
   key <AE10> { [ 9, question ] };
   key <AE11> { [ underscore, minus ] };
   key <AE12> { [ equal, plus ] };
 
-  key <AD01> { [ comma, semicolon ] };
+  key <AD01> { [ period, colon ] };
   key <AD02> { [ parenleft, less ] };
   key <AD03> { [ parenright, greater ] };
   key <AD11> { [ braceleft, bracketleft ] };
   key <AD12> { [ braceright, bracketright ] };
+  key <BKSL> { [ slash, backslash ] };
 
-  key <AC11> { [ period, colon ] };
+  key <AC11> { [ apostrophe, quotedbl ] };
 
-  key <AB01> { [ apostrophe, quotedbl ] };
+  key <AB01> { [ comma, semicolon ] };
 };
