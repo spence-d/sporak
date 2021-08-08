@@ -1,31 +1,155 @@
-default partial alphanumeric_keys
+default partial alphanumeric_keys modifier_keys
 
 xkb_symbols "basic" {
   name[Group1]= "Sporak";
 
   include "us(dvorak)"
+  include "keypad(ops)"
+  include "ctrl(nocaps)"
+  include "ctrl(menu_rctrl)"
+  include "terminate(ctrl_alt_bksp)"
+  include "level3(modifier_mapping)"
+  include "level5(modifier_mapping)"
+  include "sporak(mirror_left)"
+  include "sporak(mirror_right)"
 
-  key <AE01> { [ 0 ] };
-  key <AE02> { [ 1 ] };
-  key <AE03> { [ 2 ] };
-  key <AE04> { [ 3 ] };
-  key <AE05> { [ 4 ] };
-  key <AE06> { [ 5 ] };
-  key <AE07> { [ 6 ] };
-  key <AE08> { [ 7 ] };
-  key <AE09> { [ 8, bar ] };
-  key <AE10> { [ 9, question ] };
-  key <AE11> { [ underscore, minus ] };
-  key <AE12> { [ equal, plus ] };
+  //TODO Shift+Esc isn't voided
+  key <ESC> { type = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK",
+              [ NoSymbol, VoidSymbol, VoidSymbol, VoidSymbol, VoidSymbol, VoidSymbol, VoidSymbol, VoidSymbol ],
+              actions = [NoAction(), SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks),
+                         SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks), SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks),
+                         SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks), SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks),
+                         SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks), SetMods(modifiers=Lock+Shift+LevelThree+LevelFive, clearLocks)] };
+  key <LFSH> { type = "TWO_LEVEL",
+               actions = [LatchMods(modifiers=Shift), LockMods(modifiers=Shift)] };
+  key <RTSH> { type = "TWO_LEVEL",
+               actions = [LatchMods(modifiers=Shift), LockMods(modifiers=Shift)] };
+  key <LWIN> { [ ISO_Level5_Latch, ISO_Level5_Latch, ISO_Level5_Latch, ISO_Level5_Latch,
+                 ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock ] };
+  key <RWIN> { [ ISO_Level5_Latch, ISO_Level5_Latch, ISO_Level5_Latch, ISO_Level5_Latch,
+                 ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock ] };
+  key <RALT> { [ ISO_Level3_Latch, ISO_Level3_Latch, ISO_Level3_Lock, ISO_Level3_Lock,
+                 ISO_Level3_Latch, ISO_Level3_Latch, ISO_Level3_Lock, ISO_Level3_Lock ] };
+  key <NMLK> { type = "EIGHT_LEVEL",
+               [ Caps_Lock, ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock,
+                 ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock ] };
 
-  key <AD01> { [ period, colon ] };
-  key <AD02> { [ parenleft, less ] };
-  key <AD03> { [ parenright, greater ] };
-  key <AD11> { [ braceleft, bracketleft ] };
-  key <AD12> { [ braceright, bracketright ] };
-  key <BKSL> { [ slash, backslash ] };
+  key <RTRN> { type = "EIGHT_LEVEL",
+               [ NoSymbol, Return, Return, Return, Return, equal, Control_L, Control_L],
+               actions = [ NoAction(), SetMods(modifiers=Shift+Lock, clearLocks), NoAction(), NoAction(), NoAction(), NoAction(), SetMods(modifiers=Control), SetMods(modifiers=Control) ] };
 
-  key <AC11> { [ apostrophe, quotedbl ] };
 
-  key <AB01> { [ comma, semicolon ] };
+  key.type[Group1] = "EIGHT_LEVEL";
+  key <TLDE> { [ 0, asciicircum, degree, zerosubscript, Insert, Insert, bracketleft, less ] };
+  key <AE01> { [ 1, dollar, onesuperior, onesubscript, F1, F1, bracketright, greater ] };
+  key <AE02> { [ 2, numbersign, twosuperior, twosubscript, F2, F2, minus, plus ] };
+  key <AE03> { [ 3, at, threesuperior, threesubscript, F3, F3, question, exclam ] };
+  key <AE04> { [ 4, grave, foursuperior, foursubscript, F4, F4, 9, bar ] };
+  key <AE05> { [ 5, asciitilde, fivesuperior, fivesubscript, F5, F5, 8, ampersand ] };
+  key <AE06> { [ 6, percent, sixsuperior, sixsubscript, F6, F6, 7, asterisk ] };
+  key <AE07> { [ 7, asterisk, sevensuperior, sevensubscript, F7, F7, 6, percent ] };
+  key <AE08> { [ 8, ampersand, eightsuperior, eightsubscript, F8, F8, 5, asciitilde ] };
+  key <AE09> { [ 9, bar, ninesuperior, ninesubscript, F9, F9, 4, grave ] };
+  key <AE10> { [ question, exclam, questiondown, exclamdown, F10, F10, 3, at ] };
+  key <AE11> { [ minus, plus, endash, emdash, F11, F11, 2, numbersign ] };
+  key <AE12> { [ bracketleft, less, lessthanequal, guillemotleft, F12, F12, 1, dollar ] };
+  key <BKSP> { [ bracketright, greater, greaterthanequal, guillemotright, ISO_Next_Group, ISO_Prev_Group, 0, asciicircum ] };
+
+  key.type[Group1] = "EIGHT_LEVEL_LEVEL_FIVE_LOCK";
+  key <TAB> { [ Tab, Tab, Tab, Tab, Insert, Insert, BackSpace, equal ] };
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <AD01> { [ q, Q, leftpointer, NoSymbol, Home, Home, k, K ] };
+  key <AD02> { [ w, W, uparrow, NoSymbol, Up, Up, r, R ] };
+  key <AD03> { [ u, U, rightpointer, VoidSymbol, End, End, c, C ] };
+  key <AD04> { [ NoSymbol, NoSymbol, enfilledsqbullet, enopensquarebullet, Prior, Prior, g, G ] };
+  key.type[Group1] = "EIGHT_LEVEL";
+  key <AD05> { [ period, colon, dead_grave, dead_doublegrave, semicolon, underscore, comma, semicolon ] };
+  key <AD06> { [ slash, backslash, Multi_key, dead_greek, braceleft, braceright, slash, backslash ] };
+  key <AD07> { [ comma, semicolon, division, U2044, slash, backslash, period, colon ] };
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <AD08> { [ g, G, upleftcorner, NoSymbol, 7, asciicircum, p, P ] };
+  key <AD09> { [ c, C, topt, NoSymbol, 8, bar, u, U ] };
+  key <AD10> { [ r, R, uprightcorner, NoSymbol, 9, ampersand, w, W ] };
+  key <AD11> { [ k, K, vertbar, NoSymbol, minus, asciitilde, q, Q ] };
+  key <AD12> { [ underscore, equal, notequal, approxeq, less, greater, Tab, Tab ] };
+  key <BKSL> { [ BackSpace, BackSpace, BackSpace, BackSpace, BackSpace, BackSpace, Escape, Escape ] };
+
+  key.type[Group1] = "EIGHT_LEVEL_LEVEL_FIVE_LOCK";
+  key <CAPS> { [ NoSymbol, NoSymbol, Caps_Lock, Caps_Lock, Caps_Lock, Caps_Lock, Return, underscore ] };
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <AC01> { [ NoSymbol, NoSymbol, leftarrow, NoSymbol, Left, Left, s, S ] };
+  key <AC02> { [ NoSymbol, NoSymbol, downarrow, NoSymbol, Down, Down, n, N ] };
+  key <AC03> { [ NoSymbol, NoSymbol, rightarrow, NoSymbol, Right, Right, t, T ] };
+  key <AC04> { [ i, I, enfilledcircbullet, enopencircbullet, Next, Next, h, H ] };
+  key <AC05> { [ b, B, dead_acute, dead_doubleacute, quotedbl, apostrophe, m, M ] };
+  key.type[Group1] = "EIGHT_LEVEL";
+  key <AC06> { [ apostrophe, quotedbl, leftdoublequotemark, rightdoublequotemark, parenleft, parenright, apostrophe, quotedbl ] };
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <AC07> { [ m, M, multiply, periodcentered, asterisk, x, b, B ] };
+  key <AC08> { [ h, H, leftt, NoSymbol, 4, D, i, I ] };
+  key <AC09> { [ t, T, crossinglines, NoSymbol, 5, E, e, E ] };
+  key <AC10> { [ n, N, rightt, NoSymbol, 6, F, o, O ] };
+  key <AC11> { [ s, S, horizlinescan5, plusminus, plus, colon, a, A ] };
+
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <AB01> { [ x, X, dead_diaeresis, dead_breve, dollar, asciicircum, v, V ] };
+  key <AB02> { [ z, Z, dead_circumflex, dead_caron, at, numbersign, j, J ] };
+  key <AB03> { [ d, D, dead_abovedot, dead_abovering, asciitilde, grave, l, L ] };
+  key <AB04> { [ y, Y, dead_macron, dead_tilde, asterisk, percent, f, F ] };
+  key.type[Group1] = "EIGHT_LEVEL";
+  key <AB05> { [ parenleft, braceleft, dead_cedilla, dead_ogonek, exclam, question, parenleft, braceleft ] };
+  key <AB06> { [ parenright, braceright, dead_belowdot, dead_belowcomma, bracketleft, bracketright, parenright, braceright ] };
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <AB07> { [ f, F, ellipsis, checkmark, period, comma, y, Y ] };
+  key <AB08> { [ l, L, lowleftcorner, NoSymbol, 1, A, d, D ] };
+  key <AB09> { [ j, J, bott, NoSymbol, 2, B, z, Z ] };
+  key <AB10> { [ v, V, lowrightcorner, NoSymbol, 3, C, x, X ] };
+
+ key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <SPCE> { [ space, space, emptyset, nobreakspace, 0, 0, space, space ], 
+               actions = [NoAction(), SetMods(modifiers=Shift+Lock, clearLocks)] };
+
+  key.type[Group1] = "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK";
+  key <KPDV> { [ NoSymbol, backslash, division, U2044, slash, backslash ] };
+  key <KPMU> { [ NoSymbol, x, multiply, NoSymbol, asterisk, x ] };
+  key <KPSU> { [ NoSymbol, asciitilde, vertbar, NoSymbol, minus, asciitilde ] };
+  key <KPAD> { [ NoSymbol, colon, horizlinescan5, plusminus, plus, colon ] };
+  key <KPEN> { [ NoSymbol, equal, notequal, approxeq, KP_Enter, KP_Enter ] };
+
+  key <KPDL> { [ KP_Decimal, KP_Separator, NoSymbol, NoSymbol, Next ] };
+  key <KP0> { [ KP_0, 0, emptyset, NoSymbol, space, nobreakspace ] };
+  key <KP1> { [ KP_1, A, lowleftcorner, NoSymbol, BackSpace, Delete ] };
+  key <KP2> { [ KP_2, B, bott, NoSymbol, Tab, Tab ] };
+  key <KP3> { [ KP_3, C, lowrightcorner, NoSymbol, Prior, Prior ] };
+  key <KP4> { [ KP_4, D, leftt, NoSymbol, Left, Left ] };
+  key <KP5> { [ KP_5, E, crossinglines, NoSymbol, Down, Down ] };
+  key <KP6> { [ KP_6, F, rightt, NoSymbol, Right, Right ] };
+  key <KP7> { [ KP_7, asciicircum, upleftcorner, NoSymbol, Home, Home ] };
+  key <KP8> { [ KP_8, bar, topt, NoSymbol, Up, Up ] };
+  key <KP9> { [ KP_9, ampersand, uprightcorner, NoSymbol, End, End ] };
+};
+
+hidden partial modifier_keys
+xkb_symbols "mirror_left" {
+  key.type[Group1] = "EIGHT_LEVEL_LEVEL_FIVE_LOCK";
+  key <LCTL> { actions = [ LatchMods(modifiers=LevelThree+LevelFive), LatchMods(modifiers=LevelThree+LevelFive),
+                           NoAction(), NoAction(), NoAction(), NoAction(),
+                           LockMods(modifiers=LevelThree+LevelFive), LockMods(modifiers=LevelThree+LevelFive) ] };
+};
+
+hidden partial modifier_keys
+xkb_symbols "mirror_right" {
+  key.type[Group1] = "EIGHT_LEVEL_LEVEL_FIVE_LOCK";
+  key <RCTL> { actions = [ LatchMods(modifiers=LevelThree+LevelFive), LatchMods(modifiers=LevelThree+LevelFive),
+                           NoAction(), NoAction(), NoAction(), NoAction(),
+                           LockMods(modifiers=LevelThree+LevelFive), LockMods(modifiers=LevelThree+LevelFive) ] };
+};
+
+default partial xkb_types "reverse" {
+    override type "REVERSE_TWO_LEVEL" {
+    modifiers = Lock;
+    map[Lock] = Level2;
+    level_name[Level1] = "Base";
+    level_name[Level2] = "Shift";
+    };
 };
